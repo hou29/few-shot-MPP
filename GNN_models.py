@@ -6,6 +6,7 @@ from torch_geometric.nn import global_add_pool, global_mean_pool, global_max_poo
 import torch.nn.functional as F
 from torch_scatter import scatter_add, scatter_mean
 from torch_geometric.nn.inits import glorot, zeros
+from message_passing_for_gat import MessagePassingForGAT
 
 num_atom_type = 120  # including the extra mask tokens
 num_chirality_tag = 3
@@ -107,7 +108,7 @@ class GCNConv(MessagePassing):
         return norm.view(-1, 1) * (x_j + edge_attr)
 
 
-class GATConv(MessagePassing):
+class GATConv(MessagePassingForGAT):
     def __init__(self, emb_dim, heads=2, negative_slope=0.2, aggr="add"):
         super(GATConv, self).__init__()
 
@@ -304,13 +305,10 @@ class attributes_GNN(torch.nn.Module):
     def __init__(self, num_layer, emb_dim, attr_dim, device, JK="last", drop_ratio=0, gnn_type="gin",with_attr=True,pretrained_bool='False'):
         super(attributes_GNN, self).__init__()
 
-        # 节点表示、分子表示
         self.gnn = GNN(num_layer, emb_dim, JK, drop_ratio, gnn_type=gnn_type)
 
-        # 节点 的注意力 （节点个数, 节点表征的维度）
         self.node_fc = nn.Linear(emb_dim + attr_dim, 1)
 
-        # dim 的注意力
         self.dim_fc = nn.Linear(emb_dim+attr_dim, emb_dim)
 
         self.with_attr = with_attr
@@ -336,10 +334,8 @@ class attributes_GNN(torch.nn.Module):
 
         graph_representation = scatter_mean(node_representation, atom_mask_index, dim=0)
 
-        # dim attn
         graph_concat_attrs = torch.cat([graph_representation, attrs], dim=1)
         dim_weights = torch.sigmoid(self.dim_fc(graph_concat_attrs.float()))
-        # dim_weights = torch.softmax(dim_weights,dim=1)
         graph_representation = graph_representation * dim_weights
 
 
