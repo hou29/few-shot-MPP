@@ -28,7 +28,7 @@ tqdm = 4.66.1
 The Tox21, SIDER, MUV and TDC datasets used in the paper are in the data folder.
 
 # Molecular Attributes 
-The Molecular Attributes of Tox21, SIDER, MUV and TDC datasets can be download from [here](https://drive.google.com/drive/folders/1hIJb-kVhUiSeoIchSLMFFcggRinmpMht?usp=sharing).
+The molecular attributes of Tox21, SIDER, MUV and TDC datasets can be download from [here](https://drive.google.com/drive/folders/1hIJb-kVhUiSeoIchSLMFFcggRinmpMht?usp=sharing) or you can also tune hyperparameters in main.py to generate required attributes directly.
 
 # Experiments
 To run the experiments, use the command (please check and tune the hyper-parameters):
