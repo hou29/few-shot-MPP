@@ -11,6 +11,7 @@ The molecular property prediction (MPP) plays a crucial role in the drug discove
 # Environments
 ## GPU environment
 CUDA 10.1
+
 Ubuntu 18.04
 
 ## create conda environment
