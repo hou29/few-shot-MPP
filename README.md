@@ -10,17 +10,28 @@ The molecular property prediction (MPP) plays a crucial role in the drug discove
 
 # Environments
 ## GPU environment
+CUDA 10.1
+Ubuntu 18.04
 
 ## create conda environment
-PyTorch = 1.7.0
+python = 3.7
+PyTorch = 1.10.0
 Numpy = 1.21.6
-Rdkit = 2023.3.1
+Rdkit = 2023.3.2
 scikit-learn = 1.0.2
 scipy = 1.7.3
+networkx = 2.6.3 
+pandas = 1.3.5
+tqdm = 4.66.1 
 
-```
+# Datasets
+The Tox21, SIDER, MUV and TDC datasets used in the paper are in the data folder.
 
-# Usage
+# Molecular Attributes 
+The Molecular Attributes of Tox21, SIDER, MUV and TDC datasets can be download from [here](https://drive.google.com/drive/folders/1hIJb-kVhUiSeoIchSLMFFcggRinmpMht?usp=sharing).
+
+# Experiments
+To run the experiments, use the command (please check and tune the hyper-parameters):
 ```
 python main.py
 ```
