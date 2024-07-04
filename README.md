@@ -16,13 +16,21 @@ Ubuntu 18.04
 
 ## create conda environment
 python = 3.7
+
 PyTorch = 1.10.0
+
 Numpy = 1.21.6
+
 Rdkit = 2023.3.2
+
 scikit-learn = 1.0.2
+
 scipy = 1.7.3
+
 networkx = 2.6.3 
+
 pandas = 1.3.5
+
 tqdm = 4.66.1 
 
 # Datasets
